@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/pacifer/static/css/main.41d49b5e.chunk.css",
+    "main.js": "/pacifer/static/js/main.1b40ff4f.chunk.js",
+    "main.js.map": "/pacifer/static/js/main.1b40ff4f.chunk.js.map",
+    "runtime-main.js": "/pacifer/static/js/runtime-main.89398a7e.js",
+    "runtime-main.js.map": "/pacifer/static/js/runtime-main.89398a7e.js.map",
+    "static/js/2.746fc4b2.chunk.js": "/pacifer/static/js/2.746fc4b2.chunk.js",
+    "static/js/2.746fc4b2.chunk.js.map": "/pacifer/static/js/2.746fc4b2.chunk.js.map",
+    "index.html": "/pacifer/index.html",
+    "precache-manifest.ff149eda19f834e66d478d7314b059ca.js": "/pacifer/precache-manifest.ff149eda19f834e66d478d7314b059ca.js",
+    "service-worker.js": "/pacifer/service-worker.js",
+    "static/css/main.41d49b5e.chunk.css.map": "/pacifer/static/css/main.41d49b5e.chunk.css.map",
+    "static/js/2.746fc4b2.chunk.js.LICENSE.txt": "/pacifer/static/js/2.746fc4b2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.89398a7e.js",
+    "static/js/2.746fc4b2.chunk.js",
+    "static/css/main.41d49b5e.chunk.css",
+    "static/js/main.1b40ff4f.chunk.js"
+  ]
+}
