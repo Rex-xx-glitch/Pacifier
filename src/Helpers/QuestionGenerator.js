@@ -1,4 +1,5 @@
 import Child from "./Calculations";
+import weightImage from "../images/weight.png";
 import {v4} from "uuid";
 
 const Questiontype = [
@@ -45,7 +46,6 @@ export default function generateQuestion() {
       weight: cWeight[1] === "kg" ? cWeight[0] * 1000 : cWeight[0],
     });
 
-    console.log(child.weight);
 
     const rnTemp = Math.floor(Math.random() * 2);
     const statement = Questiontype[0].template[rnTemp].data
@@ -59,7 +59,7 @@ export default function generateQuestion() {
         statement,
         answers: generateAgeAnswers(child.estimatedAge).sort((a, b) => a.id < b.id),
         tutor: {
-            image:"images/weight.png"
+            image: weightImage
         }
     }
   
@@ -67,22 +67,26 @@ export default function generateQuestion() {
 
 
 function generateAgeAnswers(correctAnswer){
-    return [
-        {
-            id: v4(),
-            statement: correctAnswer[0] + " " + correctAnswer[1],
-            isCorrect: true
-        },{
-            id: v4(),
-            statement: generateAge(correctAnswer[0])
-        },{
-            id: v4(),
-            statement: generateAge(correctAnswer[0])
-        },{
-            id: v4(),
-            statement: generateAge(correctAnswer[0])
-        }
-    ]
+    const answers = [
+      {
+          id: v4(),
+          statement: correctAnswer[0] + " " + correctAnswer[1],
+          isCorrect: true
+      },{
+          id: v4(),
+          statement: generateAge(correctAnswer[0])
+      },{
+          id: v4(),
+          statement: generateAge(correctAnswer[0])
+      },{
+          id: v4(),
+          statement: generateAge(correctAnswer[0])
+      }
+  ];
+
+    
+
+    return shuffle(answers);
 }
 
 function generateAge(correct){
@@ -95,7 +99,7 @@ function generateAge(correct){
 
     let my = "years";
     if(age < 12){
-        my = Math.floor(Math.random() * 2) == 0 ? "months": "years"; 
+        my = Math.floor(Math.random() * 2) === 0 ? "months": "years"; 
     }
 
     if(age === 1){
@@ -105,3 +109,15 @@ function generateAge(correct){
     return age + " " + my;
 }
 
+function shuffle(array){
+  let tempValue = 0, randomIndex = 0;
+
+  for(let i = array.length - 1; i > 0; i--){
+    randomIndex = Math.floor(Math.random() * i);
+    tempValue = array[i];
+    array[i] = array[randomIndex];
+    array[randomIndex] = tempValue;
+  }
+
+  return array;
+}

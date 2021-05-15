@@ -9,12 +9,15 @@ import {
   InnerContainer,
   Image,
   Calculation,
-  Exit
+  Exit,
+  QuestionNumber,
+  StatementContainer,
 } from "../../styles/component";
 
-export default function Question({ id, data, cB }) {
+export default function Question({ id, data, cB, qNumber }) {
   const [selected, setSelected] = useState(null);
   const [showTutorial, setShowTutorial] = useState(false);
+  const [correctId, setCorrectId] = useState(null);
 
   const select = (id) => {
     setSelected(id);
@@ -25,19 +28,28 @@ export default function Question({ id, data, cB }) {
 
     if (correctAns) {
       if (correctAns.id === selected) {
-        cB(id);
+        cB(correctId === null);
+        setCorrectId(null);
       } else {
         setSelected(correctAns.id);
         setShowTutorial(true);
+        setCorrectId(correctAns.id);
       }
     }
   };
+
+  const exitNext = () => {
+    setShowTutorial(false);
+  }
   return (
     <>
       {data && (
         <>
           <Container>
-            <Statement>{data.statement}</Statement>
+            <StatementContainer>
+              <QuestionNumber>{qNumber}</QuestionNumber>
+              <Statement>{data.statement}</Statement>
+            </StatementContainer>
             <Answers>
               {data.answers.map((ans) => (
                 <Checkbox
@@ -46,6 +58,8 @@ export default function Question({ id, data, cB }) {
                   id={ans.id}
                   label={ans.statement}
                   cB={select}
+                  isCorrect={correctId === ans.id}
+                  disabled={correctId !== null && correctId !== ans.id}
                 />
               ))}
             </Answers>
@@ -55,15 +69,15 @@ export default function Question({ id, data, cB }) {
           </Container>
           {showTutorial && (
             <Tutor>
-                <InnerContainer>
-                    <Exit onClick={()=> (setShowTutorial(false))}>x</Exit>
-              <h1>Tutorial</h1>
-              {data.tutor && (
-                <>
-                  <Image src={data.tutor.image} />
-                  <Calculation>{data.tutor.calculation}</Calculation>{" "}
-                </>
-              )}
+              <InnerContainer>
+                <Exit onClick={exitNext}>x</Exit>
+                <h1>Tutorial</h1>
+                {data.tutor && (
+                  <>
+                    <Image src={data.tutor.image} alt="Tutorial" />
+                    <Calculation>{data.tutor.calculation}</Calculation>
+                  </>
+                )}
               </InnerContainer>
             </Tutor>
           )}
