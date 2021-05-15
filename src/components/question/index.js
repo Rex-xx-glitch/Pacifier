@@ -14,9 +14,8 @@ import {
   StatementContainer,
 } from "../../styles/component";
 
-export default function Question({ id, data, cB, qNumber }) {
+export default function Question({ id, data, cB, qNumber, hint}) {
   const [selected, setSelected] = useState(null);
-  const [showTutorial, setShowTutorial] = useState(false);
   const [correctId, setCorrectId] = useState(null);
 
   const select = (id) => {
@@ -32,14 +31,13 @@ export default function Question({ id, data, cB, qNumber }) {
         setCorrectId(null);
       } else {
         setSelected(correctAns.id);
-        setShowTutorial(true);
         setCorrectId(correctAns.id);
       }
     }
   };
 
   const exitNext = () => {
-    setShowTutorial(false);
+    hint.setHint(false);
   }
   return (
     <>
@@ -67,7 +65,7 @@ export default function Question({ id, data, cB, qNumber }) {
               Answer
             </Button>
           </Container>
-          {showTutorial && (
+          {hint.showHint && (
             <Tutor>
               <InnerContainer>
                 <Exit onClick={exitNext}>x</Exit>

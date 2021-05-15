@@ -9,6 +9,16 @@ transform: scale(1);
 }
 `;
 
+const HereIam = keyframes`
+  0%{
+    transform: scale(0.9);
+  }50%{
+    transform: scale(1.2);
+  }100%{
+    transform: scale(0.9);
+  }
+`;
+
 export const Cbox = styled.div`
   background-color: ${props => props.correct ? "red" : props.disabled ? "grey": props.checked ? "#2A9D8F" : "#264653"}; 
   color: ${(props) => (props.disabled ? "white" : props.checked ? "white" : "black")};
@@ -168,4 +178,15 @@ export const StatementContainer = styled.div`
   @media (min-width: 992px) {
     margin: 50px 20%;
   }
+`;
+
+export const Hint = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: black;
+  cursor: pointer;
+  animation: ${HereIam} 1s ease-in-out infinite;
+  font-weight: bold;
+  text-shadow: 1px 2px 5px rgba(0,0,0,0.4);
 `;
